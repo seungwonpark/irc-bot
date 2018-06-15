@@ -6,7 +6,7 @@ def react(irc, message):
 		ticker = message[3:].strip().upper()
 		price = get_coinprice(ticker, "KRW")
 		if(price == -1):
-			out_text = '%s는 업비트에 없는 코인입니다.' % (ticker)
+			out_text = '%s는 업비트, 고팍스에 없는 코인입니다.' % (ticker)
 		else:
 			out_text = '%s는 현재 %d원입니다.' % (ticker, price)
 		irc.send(channel, out_text)
