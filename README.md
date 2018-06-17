@@ -6,5 +6,4 @@
 - 끄기: `!q`
 
 ## LICENSE
-- `irc.py`: from https://github.com/minty99/BOJTracker_Bot
-- Others: MIT License.
+- MIT License.

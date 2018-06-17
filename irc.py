@@ -1,5 +1,3 @@
-# from https://github.com/minty99/BOJTracker_Bot
-
 import socket
 import ssl
 import sys
