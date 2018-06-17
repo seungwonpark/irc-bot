@@ -1,5 +1,8 @@
 # Created by https://www.gitignore.io/api/python
 
+# API keys
+apikey.py
+
 ### Python ###
 # Byte-compiled / optimized / DLL files
 __pycache__/
