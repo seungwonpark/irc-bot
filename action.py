@@ -2,6 +2,8 @@ from coin import *
 from config import *
 
 def react(irc, message):
+	if(message[:2] == '!c'):
+		message = '!c btc'
 	if(message[:3] == '!c '):
 		ticker = message[3:].strip().upper()
 		price = get_coinprice(ticker, "KRW")

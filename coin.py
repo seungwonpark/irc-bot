@@ -5,6 +5,9 @@ baseurl = "https://crix-api-cdn.upbit.com/v1/crix/candles/minutes/60?code="
 gopax_format = "https://api.gopax.co.kr/trading-pairs/{from_currency}-{to_currency}/stats"
 
 def get_coinprice(from_currency, to_currency):
+	if(from_currency == ''):
+		# default: bitcoin
+		from_currency = 'BTC'
 	# params are case-insensitive
 	req = requests.get(baseurl + code_format.format(from_currency=from_currency, to_currency=to_currency))
 	li = req.json()
