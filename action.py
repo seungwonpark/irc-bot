@@ -2,7 +2,8 @@ from coin import *
 from config import *
 
 def react(irc, message):
-	if(message == '!c'):
+	print(message)
+	if(message[:2] == '!c' and message[2] != ' '):
 		message = '!c btc'
 	if(message[:3] == '!c '):
 		ticker = message[3:].strip().upper()
