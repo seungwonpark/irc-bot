@@ -10,7 +10,10 @@ def react(irc, message):
 		if(price == -1):
 			out_text = '%s는 업비트, 고팍스에 없는 코인입니다.' % (ticker)
 		else:
-			out_text = '%s는 현재 %s원입니다.' % (ticker, "{:,}".format(price))
+			if(price > 100):
+				out_text = '%s는 현재 %s원입니다.' % (ticker, "{:,}".format(int(price)))
+			else:
+				out_text = '%s는 현재 %.1lf원입니다.' % (ticker, price)
 		irc.send(channel, out_text)
 	if(message[:2] == '!h'):
 		irc.send(channel, 'https://github.com/seungwonpark/irc-bot#features')
