@@ -11,4 +11,4 @@ def react(irc, message):
 			out_text = '%s는 현재 %d원입니다.' % (ticker, price)
 		irc.send(channel, out_text)
 	if(message[:2] == '!h'):
-		irc.send(channel, 'https://github.com/seungwonpark/irc-bot/README.md#features')
+		irc.send(channel, 'https://github.com/seungwonpark/irc-bot#features')
