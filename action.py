@@ -16,5 +16,5 @@ def react(irc, message):
 			else:
 				out_text = '%s는 현재 %.1lf원입니다.' % (ticker, price)
 		irc.send(channel, out_text)
-	if(message[:2] == '!h'):
+	if(message[:2] == '!h' and not message[2].isalpha()):
 		irc.send(channel, 'https://github.com/seungwonpark/irc-bot#features')
