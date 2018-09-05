@@ -4,10 +4,10 @@ import initialize
 import repeat
 from config import *
 
-conn = initialize.initialize()
+conn, aclist = initialize.initialize()
 
 while True:
-	resp = repeat.repeat(conn)
+	resp = repeat.repeat(conn, aclist)
 	if resp == '<quit>':
 		break
 	time.sleep(1)
