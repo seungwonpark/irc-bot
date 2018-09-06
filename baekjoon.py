@@ -17,7 +17,7 @@ def get_aclist(username=boj_username):
 	probname = [x.text for x in probname]
 	return zip(probno, probname)
 
-def post_ac(conn, probno):
+def post_ac(conn, prob):
 	probno = prob[0]
 	probname = prob[1]
 	message = 'AC: %s boj.kr/%s' % (probname, probno)
