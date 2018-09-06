@@ -9,8 +9,13 @@ def get_text(username=boj_username):
 
 def get_aclist(username=boj_username):
 	html = get_text(username)
-	temp = re.findall(r'class="result-ac">(.*)</a></span>', html)
-	return zip(temp[0::2], temp[1::2])
+	soup = BeautifulSoup(html, 'html.parser')
+	ac_html = soup.select("div.col-md-9 > div > div.panel-body")[0]
+	probno = ac_html.select("span.problem_number > a")
+	probname = ac_html.select("span.problem_title > a")
+	probno = [x.text for x in probno]
+	probname = [x.text for x in probname]
+	return zip(probno, probname)
 
 def post_ac(conn, probno):
 	probno = prob[0]
