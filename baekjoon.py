@@ -25,7 +25,7 @@ def get_aclist(username=boj_username):
 def post_ac(conn, prob):
 	probno, probname = prob
 	message = ':white_check_mark: :%s: %s boj.kr/%s' % \
-		(emoij.get_positive_emoji(), probname, probno)
+		(emoji.get_positive_emoji(), probname, probno)
 	conn.send(channel, message)
 
 def post_dbg(conn, prob):
