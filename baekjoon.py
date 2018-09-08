@@ -15,7 +15,10 @@ def get_aclist(username=boj_username):
 	probname = ac_html.select("span.problem_title > a")
 	probno = [x.text for x in probno]
 	probname = [x.text for x in probname]
-	return zip(probno, probname)
+	ret = []
+	for x, y in zip(probno, probname):
+		ret.append((x, y))
+	return ret
 
 def post_ac(conn, prob):
 	probno = prob[0]
@@ -25,6 +28,9 @@ def post_ac(conn, prob):
 
 def update_aclist(conn, aclist_old, username=boj_username):
 	aclist_now = get_aclist(username)
+	print('There were %d solved problems, found %d solved problems now.' %
+		(len(aclist_old), len(aclist_now))
+	)
 	for prob in aclist_now:
 		if prob not in aclist_old:
 			post_ac(conn, prob)
