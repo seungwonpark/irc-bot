@@ -1,7 +1,9 @@
 import requests
 import re
+import time
 from config import *
 from bs4 import BeautifulSoup
+import emoji
 
 def get_text(username=boj_username):
 	req = requests.get('https://acmicpc.net/user/%s' % username)
@@ -21,17 +23,25 @@ def get_aclist(username=boj_username):
 	return ret
 
 def post_ac(conn, prob):
-	probno = prob[0]
-	probname = prob[1]
-	message = 'AC: %s boj.kr/%s' % (probname, probno)
+	probno, probname = prob
+	message = ':white_check_mark: :%s: %s boj.kr/%s' % \
+		(emoij.get_positive_emoji(), probname, probno)
+	conn.send(channel, message)
+
+def post_dbg(conn, prob):
+	probno, probname = prob
+	message = ':stew: :hammer: %s boj.kr/%s' % (probname, probno)
 	conn.send(channel, message)
 
 def update_aclist(conn, aclist_old, username=boj_username):
 	aclist_now = get_aclist(username)
-	print('There were %d solved problems, found %d solved problems now.' %
-		(len(aclist_old), len(aclist_now))
+	print('%s AC: %d -> %d.' %
+		(time.asctime(), len(aclist_old), len(aclist_now))
 	)
 	for prob in aclist_now:
 		if prob not in aclist_old:
 			post_ac(conn, prob)
+	for prob in aclist_old:
+		if prob not in aclist_now:
+			post_dbg(conn, prob)
 	return aclist_now
