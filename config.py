@@ -1,5 +1,5 @@
 server = "moe.uriirc.org"
 port = 16664
-channel = "#kick"
+channel = "#veydpz"
 nickname = "veydpz_bot"
 boj_username = 'veydpz'
