@@ -8,11 +8,11 @@ def get_boardlist():
 	prefix = '<td class="row1" width="100%"><span class="topictitle">'
 	suffix = '</a></span><span class="gensmall"><br />'
 	boardlist = re.findall(r'%s(.*)%s' % (prefix, suffix), req.text)
-	post_id = []
+	post_info = []
 	for x in boardlist:
 		now_id = re.findall(r'viewtopic\.php\?t=(.*)&amp;', x)[0]
-		post_id.append(now_id)
-	return post_id
+		now_title = x.split('class="topictitle">')[1]
+		post_info.append((now_id, now_title))
 
 def post(conn, post_id):
 	url = 'https://ropas.snu.ac.kr/phpbb/viewtopic.php?t=%s' % post_id
@@ -27,4 +27,4 @@ def update_boardlist(conn, boardlist_old):
 	boardlist_new = get_boardlist()
 	for x in boardlist_new:
 		if x not in boardlist_old:
-			post(conn, x)
+			post(conn, x[0])
