@@ -35,9 +35,6 @@ def post_dbg(conn, prob):
 
 def update_aclist(conn, aclist_old, username=boj_username):
 	aclist_now = get_aclist(username)
-	print('%s AC: %d -> %d.' %
-		(time.asctime(), len(aclist_old), len(aclist_now))
-	)
 	for prob in aclist_now:
 		if prob not in aclist_old:
 			post_ac(conn, prob)
