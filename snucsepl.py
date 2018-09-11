@@ -19,10 +19,11 @@ def post(conn, post_id):
 	url = 'https://ropas.snu.ac.kr/phpbb/viewtopic.php?t=%s' % post_id
 	req = requests.get(url)
 	req.encoding = 'utf-8'
-	post_title = re.findall(r'<title> :: 주제 보기 - (.*)</title>', req.text)
-	post_poster = re.findall(r'</a><b>(.*)</b></span><br /><span class="postdetails">', req.text)
-	message = '%s | %s\n%s' % (post_poster, post_title, url)
+	post_title = re.findall(r'<title> :: 주제 보기 - (.*)</title>', req.text)[0]
+	post_poster = re.findall(r'</a><b>(.*)</b></span><br /><span class="postdetails">', req.text)[0]
+	message = 'PL: %s | %s' % (post_title, post_poster)
 	conn.send(channel, message)
+	conn.send(channel, urL)
 
 def update_boardlist(conn, boardlist_old):
 	boardlist_new = get_boardlist()
