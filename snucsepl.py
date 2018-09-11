@@ -23,7 +23,7 @@ def post(conn, post_id):
 	post_poster = re.findall(r'</a><b>(.*)</b></span><br /><span class="postdetails">', req.text)[0]
 	message = 'PL: %s | %s' % (post_title, post_poster)
 	conn.send(channel, message)
-	conn.send(channel, urL)
+	conn.send(channel, url)
 
 def update_boardlist(conn, boardlist_old):
 	boardlist_new = get_boardlist()
