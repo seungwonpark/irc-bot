@@ -29,3 +29,4 @@ def update_boardlist(conn, boardlist_old):
 	for x in boardlist_new:
 		if x not in boardlist_old:
 			post(conn, x[0])
+	return boardlist_new
