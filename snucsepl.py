@@ -13,6 +13,7 @@ def get_boardlist():
 		now_id = re.findall(r'viewtopic\.php\?t=(.*)&amp;', x)[0]
 		now_title = x.split('class="topictitle">')[1]
 		post_info.append((now_id, now_title))
+	return post_info
 
 def post(conn, post_id):
 	url = 'https://ropas.snu.ac.kr/phpbb/viewtopic.php?t=%s' % post_id
