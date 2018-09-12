@@ -31,10 +31,14 @@ def update_snucsepl(conn, boardlist):
 if __name__ == '__main__':
 	conn, aclist, boardlist = initialize.initialize()
 
-	t1 = Thread(target=read_msg, args=(conn,))
-	t2 = Thread(target=update_boj, args=(conn, aclist))
-	t3 = Thread(target=update_snucsepl, args=(conn, boardlist))
+	if bool_respond_message:
+		t1 = Thread(target=read_msg, args=(conn,))
+		t1.start()
 
-	t1.start()
-	t2.start()
-	t3.start()
+	if bool_update_boj:
+		t2 = Thread(target=update_boj, args=(conn, aclist))
+		t2.start()
+
+	if bool_update_pl:
+		t3 = Thread(target=update_snucsepl, args=(conn, boardlist))
+		t3.start()
