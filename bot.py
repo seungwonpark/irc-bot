@@ -33,12 +33,18 @@ if __name__ == '__main__':
 
 	if bool_respond_message:
 		t1 = Thread(target=read_msg, args=(conn,))
-		t1.start()
 
 	if bool_update_boj:
 		t2 = Thread(target=update_boj, args=(conn, aclist))
-		t2.start()
 
 	if bool_update_pl:
 		t3 = Thread(target=update_snucsepl, args=(conn, boardlist))
+
+	if bool_respond_message:
+		t1.start()
+
+	if bool_update_boj:
+		t2.start()
+
+	if bool_update_pl:
 		t3.start()
