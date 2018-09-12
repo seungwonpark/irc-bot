@@ -30,7 +30,7 @@ def update_snucsepl(conn, boardlist):
 
 if __name__ == '__main__':
 	conn, aclist, boardlist = initialize.initialize()
-
+	conn.send(channel, ':wave:')
 	if bool_respond_message:
 		t1 = Thread(target=read_msg, args=(conn,))
 		t1.start()
