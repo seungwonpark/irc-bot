@@ -1,5 +1,8 @@
 # Created by https://www.gitignore.io/api/python
 
+# configuration
+config.py
+
 # API keys
 apikey.py
 
