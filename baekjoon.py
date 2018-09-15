@@ -34,7 +34,11 @@ def post_dbg(conn, prob):
 	conn.send(channel, message)
 
 def update_aclist(conn, aclist_old, username=boj_username):
-	aclist_now = get_aclist(username)
+	try:
+		aclist_now = get_aclist(username)
+	except:
+		return aclist_old
+	
 	for prob in aclist_now:
 		if prob not in aclist_old:
 			post_ac(conn, prob)
