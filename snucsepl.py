@@ -32,5 +32,8 @@ def update_boardlist(conn, boardlist_old):
 	print('%s\t found %d post' % (time.strftime('%y/%m/%d %H:%M:%S'), len(boardlist_new)))
 	for x in boardlist_new:
 		if x not in boardlist_old:
+			print(boardlist_old)
+			print(boardlist_new)
+			print(x)
 			post(conn, x[0])
 	return boardlist_new
