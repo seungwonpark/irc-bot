@@ -4,6 +4,15 @@ import time
 import html
 from config import *
 
+def spam(x):
+	post_title = x[1]
+
+	# if title does not contain Korean
+	if len(re.findall(r'[가-힣]+', post_title)) == 0:
+		return True
+
+	return False
+
 def get_boardlist():
 	req = requests.get('https://ropas.snu.ac.kr/phpbb/viewforum.php?f=47')
 	req.encoding = 'utf-8'
@@ -28,12 +37,15 @@ def post(conn, post_id):
 	conn.send(channel, url)
 
 def update_boardlist(conn, boardlist_old):
-	boardlist_new = get_boardlist()
+	# prevent from alerting same post twice
+	boardlist_new = list(set(boardlist_old + get_boardlist()))
 	print('%s\t found %d post' % (time.strftime('%y/%m/%d %H:%M:%S'), len(boardlist_new)))
 	for x in boardlist_new:
 		if x not in boardlist_old:
+			# debuging messages
 			print(boardlist_old)
 			print(boardlist_new)
 			print(x)
-			post(conn, x[0])
+			if not spam(x):
+				post(conn, x[0])
 	return boardlist_new
